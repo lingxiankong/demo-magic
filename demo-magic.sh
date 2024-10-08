@@ -126,7 +126,12 @@ function p() {
 function pe() {
   # print the command
   p "$@"
-  run_cmd "$@"
+  # Clean from \n and \ for multiline commands
+  c=${@//"\n"/}
+  c=${c//\\/}
+
+  # execute the command
+  eval "$c"
 }
 
 ##
